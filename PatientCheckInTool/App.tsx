@@ -1,7 +1,8 @@
 import * as React from "react";
 import { useContext } from "react";
-import { Context } from "../Context";
-import { PatientCheckinTool } from "./PatientCheckinTool/index";
+import { AppointmentDatePicker } from "./components/PatientCheckinTool/AppointmentDatePicker";
+import { ListContainer } from "./components/PatientCheckinTool/ListContainer";
+import { Context } from "./Context";
 
 const dummyData = [
   {
@@ -157,16 +158,21 @@ const dummyData = [
   },
 ];
 
-export const HelloWorld: React.FC<{}> = (props) => {
-  // const {text, handleClick, icon} = props
+export const App: React.FC = () => {
   const date = useContext(Context);
+
   return (
     <div className={"pcf_container"}>
       <Context.Provider value={{ date: "9/1/2019" }}>
-        {/* <AppointmentDatePicker /> */}
-        <PatientCheckinTool />
+        <div className={"patient_checkin_tool_container"}>
+          <div className={"date_picker"}>
+            <AppointmentDatePicker />
+          </div>
+          <div className={"appointment_list"}>
+            <ListContainer items={dummyData} />
+          </div>
+        </div>
       </Context.Provider>
     </div>
-    // <div><Button icon="MessageFill" text="Hello" handleClick={()=>console.log("World")}/></div>
   );
 };

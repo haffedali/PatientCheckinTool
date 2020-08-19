@@ -1,8 +1,8 @@
 import * as React from "react";
-import { Button } from "../Button";
-import { CheckBox } from "../CheckBox";
-import {Context} from '../../Context';
-import { IAppointmentItemProps } from "../../interfaces";
+import { Button } from "./Button";
+import { CheckBox } from "./CheckBox";
+import {Context} from '../Context';
+import { IAppointmentItemProps } from "../interfaces";
 
 
 export const AppointmentItemContainer: React.FC<IAppointmentItemProps> = ({name, onMessageButtonClick, onCheckBoxClick}) => {
