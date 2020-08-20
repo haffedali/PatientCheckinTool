@@ -5,7 +5,7 @@ import {Context} from '../../Context';
 import { IAppointmentItemProps } from "../../interfaces";
 
 
-export const AppointmentItemContainer: React.FC<IAppointmentItemProps> = ({name, onMessageButtonClick, onCheckBoxClick}) => {
+export const AppointmentItem: React.FC<IAppointmentItemProps> = ({name, onMessageButtonClick, onCheckBoxClick}) => {
   return (
     <Context.Provider value={{}}>
     <div className={"appointment_item"}>

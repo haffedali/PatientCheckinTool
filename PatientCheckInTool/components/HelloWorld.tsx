@@ -167,6 +167,5 @@ export const HelloWorld: React.FC<{}> = (props) => {
         <PatientCheckinTool />
       </Context.Provider>
     </div>
-    // <div><Button icon="MessageFill" text="Hello" handleClick={()=>console.log("World")}/></div>
   );
 };

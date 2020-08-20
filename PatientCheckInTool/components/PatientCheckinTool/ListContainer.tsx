@@ -6,7 +6,7 @@ import { IRectangle } from "office-ui-fabric-react/lib/Utilities";
 import { useConst, useConstCallback } from "@uifabric/react-hooks";
 import { IAppointmentItemProps, IListProps } from "../../interfaces";
 
-import { AppointmentItemContainer } from "../AppointmentItemContainer";
+import { AppointmentItem } from "./AppointmentItem";
 
 const ROWS_PER_PAGE = 5;
 const MAX_ROW_HEIGHT = 100;
@@ -35,7 +35,7 @@ export const ListContainer: React.FC<IListProps> = ({ items }) => {
     (item: IAppointmentItemProps | undefined, index: number | undefined) => {
       if (item !== undefined) {
         return (
-          <AppointmentItemContainer
+          <AppointmentItem
             name={item.name}
             onMessageButtonClick={item.onMessageButtonClick}
             onCheckBoxClick={item.onCheckBoxClick}
