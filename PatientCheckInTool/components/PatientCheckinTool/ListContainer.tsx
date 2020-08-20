@@ -36,6 +36,7 @@ export const ListContainer: React.FC<IListProps> = ({ items }) => {
       if (item !== undefined) {
         return (
           <AppointmentItemContainer
+            time={item.time}
             name={item.name}
             onMessageButtonClick={item.onMessageButtonClick}
             onCheckBoxClick={item.onCheckBoxClick}
