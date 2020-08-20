@@ -1,3 +1,5 @@
+import { CacheLocation } from "msal";
+
 export interface IButtonProps {
     text?: string;
     handleClick: (arg:any) => void;
@@ -13,6 +15,7 @@ export interface ICheckBoxProps {
 }
 
 export interface IAppointmentItemProps {
+    time: string,
     name: string;
     onMessageButtonClick: (arg: any) => void;
     onCheckBoxClick: (arg: any) => void;
@@ -20,4 +23,12 @@ export interface IAppointmentItemProps {
 
 export interface IListProps {
     items: IAppointmentItemProps[];
+}
+
+export interface IConfig {
+    appId: string;
+    appRedirectUrl: string;
+    appScopes: string[];
+    appAuthority: string;
+    cacheLocation: CacheLocation;
 }

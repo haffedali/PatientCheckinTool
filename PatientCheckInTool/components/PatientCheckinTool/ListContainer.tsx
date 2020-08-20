@@ -35,7 +35,12 @@ export const ListContainer: React.FC<IListProps> = ({ items }) => {
     (item: IAppointmentItemProps | undefined, index: number | undefined) => {
       if (item !== undefined) {
         return (
+<<<<<<< HEAD
           <AppointmentItem
+=======
+          <AppointmentItemContainer
+            time={item.time}
+>>>>>>> ae953ee28ae34a7c650722db10e01ac713b125f6
             name={item.name}
             onMessageButtonClick={item.onMessageButtonClick}
             onCheckBoxClick={item.onCheckBoxClick}
