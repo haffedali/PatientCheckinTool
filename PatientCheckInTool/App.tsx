@@ -6,7 +6,10 @@ import AzureAD, {
 import { IInputs } from "./generated/ManifestTypes";
 import { AppointmentDatePicker } from "./components/PatientCheckinTool/AppointmentDatePicker";
 import { ListContainer } from "./components/PatientCheckinTool/ListContainer";
+import { Login } from "./components/Login";
+import {SecureList} from "./components/SecureList";
 import { AppProvider } from "./AppContext";
+
 
 const dummyData = [
   {
@@ -200,9 +203,10 @@ export interface IAppProps {
 
 export const App: React.FC<IAppProps> = (props: IAppProps) => {
   const [forceLogin, setForceLogin] = React.useState(props.forceLogin);
-
+  console.log("App component begins render")
   return (
     <AppProvider {...props}>
+      {console.log(props)}
       <AzureAD provider={props.msalAuthProvider} forceLogin={forceLogin}>
         {({ error, accountInfo }: IAzureADFunctionProps) => {
           if (error && forceLogin == true) {
@@ -211,7 +215,14 @@ export const App: React.FC<IAppProps> = (props: IAppProps) => {
           return (
             <React.Fragment>
               {error && <div>error login in</div>}
-              <div className={"pcf_container"}>
+              {error && console.log(error)}
+              {accountInfo && console.log(accountInfo)}
+              <Login></Login>
+              {accountInfo
+                ? <SecureList></SecureList>
+                : <div onClick={()=>console.log(props.msalAuthProvider)}>Please sign in to see secure content</div>
+              }
+              {/* <div className={"pcf_container"}>
                 <div className={"patient_checkin_tool_container"}>
                   <div className={"date_picker"}>
                     <AppointmentDatePicker />
@@ -220,7 +231,7 @@ export const App: React.FC<IAppProps> = (props: IAppProps) => {
                     <ListContainer items={dummyData} />
                   </div>
                 </div>
-              </div>
+              </div> */}
             </React.Fragment>
           );
         }}

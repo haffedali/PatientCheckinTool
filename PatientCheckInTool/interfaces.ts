@@ -32,3 +32,10 @@ export interface IConfig {
     appAuthority: string;
     cacheLocation: CacheLocation;
 }
+
+export interface ISecureRecord {
+    id: string;
+    name: string;
+    value: string;
+    modified: Date;
+}
