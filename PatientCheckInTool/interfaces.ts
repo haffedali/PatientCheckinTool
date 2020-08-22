@@ -1,4 +1,5 @@
 import { CacheLocation } from "msal";
+import { MutableRefObject } from "react";
 
 export interface IButtonProps {
     text?: string;
@@ -11,18 +12,17 @@ export interface IIconProps {
 }
 
 export interface ICheckBoxProps {
-    handleClick: (arg:any) => void;
+    handleClick: () => void;
 }
 
 export interface IAppointmentItemProps {
-    time: string,
+    date: string,
     name: string;
-    onMessageButtonClick: (arg: any) => void;
-    onCheckBoxClick: (arg: any) => void;
+    guid: string
 }
 
 export interface IListProps {
-    items: IAppointmentItemProps[];
+    items: IAppointmentItemProps[] | [];
 }
 
 export interface IConfig {
@@ -38,4 +38,7 @@ export interface ISecureRecord {
     name: string;
     value: string;
     modified: Date;
+}
+
+export interface IAppointmentDatePicker {
 }

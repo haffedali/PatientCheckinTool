@@ -4,14 +4,9 @@ import {IButtonProps} from '../interfaces';
 
 export const Button: React.FC<IButtonProps> = (props) => {
     const {text, handleClick, icon} = props
-
-    //temp for testing
-    const tempHandleClick = () => {
-        console.log("Button clicked")
-    }
     if (icon){
-        return(<div><IconButton iconProps={{iconName: icon}} title="Emoji" ariaLabel="Emoji" onClick={tempHandleClick}/></div>)
+        return(<div><IconButton iconProps={{iconName: icon}} title="Emoji" ariaLabel="Emoji" onClick={handleClick}/></div>)
     }else{
-        return (<div><PrimaryButton text={text} onClick={tempHandleClick}/></div>)
+        return (<div><PrimaryButton text={text} onClick={handleClick}/></div>)
     }
 }

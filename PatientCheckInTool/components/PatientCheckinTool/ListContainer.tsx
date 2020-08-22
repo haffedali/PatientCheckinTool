@@ -1,12 +1,11 @@
 import * as React from "react";
 import { List } from "office-ui-fabric-react/lib/List";
-import { FocusZone } from 'office-ui-fabric-react/lib/FocusZone';
-
 import { IRectangle } from "office-ui-fabric-react/lib/Utilities";
-import { useConst, useConstCallback } from "@uifabric/react-hooks";
+import { useConstCallback } from "@uifabric/react-hooks";
 import { IAppointmentItemProps, IListProps } from "../../interfaces";
 
 import { AppointmentItem } from "./AppointmentItem";
+import { useAppContext } from "../../AppContext";
 
 const ROWS_PER_PAGE = 5;
 const MAX_ROW_HEIGHT = 100;
@@ -14,6 +13,7 @@ const MAX_ROW_HEIGHT = 100;
 export const ListContainer: React.FC<IListProps> = ({ items }) => {
   const columnCount = React.useRef(0);
   const rowHeight = React.useRef(0);
+  const appContext = useAppContext();
 
   const getItemCountForPage = useConstCallback(
     (itemIndex: number | undefined, surfaceRect: IRectangle | undefined) => {
@@ -36,10 +36,9 @@ export const ListContainer: React.FC<IListProps> = ({ items }) => {
       if (item !== undefined) {
         return (
           <AppointmentItem
-            time={item.time}
+            date={item.date}
             name={item.name}
-            onMessageButtonClick={item.onMessageButtonClick}
-            onCheckBoxClick={item.onCheckBoxClick}
+            guid={item.guid}
           />
         );
       }
@@ -51,14 +50,21 @@ export const ListContainer: React.FC<IListProps> = ({ items }) => {
   });
 
   return (
-      <div className={"ListContainer"}>
-          <List
+    <div className={"ListContainer"}>
+      {
+        console.log(appContext.loaded)
+      }
+      {
+        appContext.loaded
+          ? <List
             items={items}
             getItemCountForPage={getItemCountForPage}
             getPageHeight={getPageHeight}
             renderedWindowsAhead={4}
             onRenderCell={onRenderCell}
           />
-      </div>
+          : <div>Loading</div>
+      }
+    </div>
   );
 };

@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { DatePicker, IDatePickerStrings, mergeStyleSets } from 'office-ui-fabric-react';
+import {IAppointmentDatePicker} from '../../interfaces';
+import {useAppContext} from "../../AppContext";
 
 const DayPickerStrings: IDatePickerStrings = {
   months: [
@@ -38,7 +40,17 @@ const controlClass = mergeStyleSets({
   },
 });
 
-export const AppointmentDatePicker: React.FC = () => {
+
+
+export const AppointmentDatePicker: React.FC<IAppointmentDatePicker> = (props) => {
+  const appContext = useAppContext();
+  const date = new Date();
+  const handleChange = (date: Date| null| undefined)=> {
+    if (date){
+      appContext.setDate(date)
+    }
+  }
+  
   return (
     <div>
       <DatePicker
@@ -46,6 +58,8 @@ export const AppointmentDatePicker: React.FC = () => {
         strings={DayPickerStrings}
         placeholder="Select a date..."
         ariaLabel="Select a date"
+        onSelectDate={handleChange}
+        value={date}
       />
     </div>
   );

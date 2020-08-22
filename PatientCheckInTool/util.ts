@@ -3,7 +3,6 @@
 /**
  * @param {string[]} obj.select - Array of fields you want returned
  * @param {object[]} obj.filter - Array of filters you want to run on your call
- * @param {string} obj.id - Id of the entity you are searching for 
  * @param {string} obj.expandedEntity - Relationship name of expanded entity you want to return
  * @param {string[]} obj.expandedSelect - Array of fields you want returned from related entity
  * @param {object[]} obj.orderBy - Array of what you would like to order by -- {field: string, operator: string}
@@ -14,7 +13,7 @@
  * 
  * Select is required as of now
  */
-export const buildClientWebApiOptions = (obj) => {
+export const buildClientWebApiOptions = (obj: IQueryObj) => {
     let string = "";
     string += buildSelectWebApi(obj.select)
     if (obj.orderBy) {
@@ -40,7 +39,7 @@ export const buildClientWebApiOptions = (obj) => {
  * {field: string, value: string, operation: string}
  * Field being the field to filter on, value being what you are looking for
  */
- const buildFilterWebApi = (filterArray) => {
+ const buildFilterWebApi = (filterArray: IFilterObject[]) => {
     let first = true
     let string = `$filter=`
     filterArray.forEach((filterItem)=>{
@@ -61,8 +60,8 @@ export const buildClientWebApiOptions = (obj) => {
  * @param {string[]} selectArray - array of strings to be parsed and returned
  * @param {boolean} isExpand - Flag for modified string for use in related entity select 
  */
-const buildSelectWebApi = (selectArray, isExpand) => {
-    let string
+const buildSelectWebApi = (selectArray: string[], isExpand?: boolean) => {
+    let string = "";
     if (isExpand){
         string = "$select=";
     }else {
@@ -87,18 +86,31 @@ const buildSelectWebApi = (selectArray, isExpand) => {
  * @param {string[]} expandedSelect 
  */
 const buildExpandWebApi = () => {
-    let string = '$expand=';
-    string += relatedEntity;
-    if (relatedSelect){
-        string += `(${buildSelectString(relatedSelect, true)})`
-    }
-    return string
+
 }
+
 const buildTopWebApi = () => {
     
 }
 
 const buildOrderbyWebApi = () => {
     
+}
+
+
+
+export interface IFilterObject {
+    field: string;
+    value: string;
+    operation: string;
+}
+
+export interface IQueryObj {
+    select: string[];
+    filter?: IFilterObject[],
+    expandedEntity?: string;
+    expandedSelect?: string[];
+    top?: any;
+    orderBy?: any;
 }
 
