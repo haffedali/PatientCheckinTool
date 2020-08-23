@@ -44,7 +44,6 @@ const controlClass = mergeStyleSets({
 
 export const AppointmentDatePicker: React.FC<IAppointmentDatePicker> = (props) => {
   const appContext = useAppContext();
-  const date = new Date();
   const handleChange = (date: Date| null| undefined)=> {
     if (date){
       appContext.setDate(date)
@@ -59,7 +58,7 @@ export const AppointmentDatePicker: React.FC<IAppointmentDatePicker> = (props) =
         placeholder="Select a date..."
         ariaLabel="Select a date"
         onSelectDate={handleChange}
-        value={date}
+        value={appContext.date}
       />
     </div>
   );

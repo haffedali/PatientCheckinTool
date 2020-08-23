@@ -1,7 +1,9 @@
 import * as React from "react";
 import { List } from "office-ui-fabric-react/lib/List";
+import {DetailsList} from "office-ui-fabric-react/lib/DetailsList";
 import { IRectangle } from "office-ui-fabric-react/lib/Utilities";
 import { useConstCallback } from "@uifabric/react-hooks";
+import {Spinner} from "office-ui-fabric-react/lib/Spinner";
 import { IAppointmentItemProps, IListProps } from "../../interfaces";
 
 import { AppointmentItem } from "./AppointmentItem";
@@ -63,7 +65,8 @@ export const ListContainer: React.FC<IListProps> = ({ items }) => {
             renderedWindowsAhead={4}
             onRenderCell={onRenderCell}
           />
-          : <div>Loading</div>
+          : <Spinner label="Seriously, still loading..." ariaLive="assertive" labelPosition="top" />
+
       }
     </div>
   );

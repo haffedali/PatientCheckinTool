@@ -2,6 +2,8 @@
     display: flex;
     width: 100%;
     justify-content: space-between;
+    border-bottom: 1px solid rgb(237, 235, 233);
+    padding-top:1%;
 }
 
 .patient_name {

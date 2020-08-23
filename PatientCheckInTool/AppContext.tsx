@@ -22,7 +22,6 @@ export const AppProvider: React.FC<IAppProps> = (props) => {
     const [date, setDate] = React.useState(new Date())
     const [loaded, setLoaded] = React.useState(false)
     const [records, setRecords] = React.useState<IAppointmentItemProps[]>([]);
-    console.log("AppContext.tsx ln 21 --- <AppProver />")
     return (
         <AppContext.Provider value={{componentContext, date, setDate, loaded, setLoaded, records, setRecords}}>
             {props.children}

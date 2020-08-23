@@ -17,7 +17,7 @@ export const buildClientWebApiOptions = (obj: IQueryObj) => {
     let string = "";
     string += buildSelectWebApi(obj.select)
     if (obj.orderBy) {
-
+        string += buildOrderbyWebApi(obj.orderBy)
     }
     if (obj.top) {
 
@@ -93,8 +93,20 @@ const buildTopWebApi = () => {
     
 }
 
-const buildOrderbyWebApi = () => {
-    
+/**
+ * @param {IOrderBy[]} orderArray - Array of fields to order by and how
+ */
+const buildOrderbyWebApi = (orderArray: IOrderBy[]) => {
+    let first = true;
+    let string = "&$orderby=";
+    orderArray.forEach((orderBy: IOrderBy) => {
+        if (first){
+            string += `${orderBy.field} ${orderBy.suffix}`
+            first = false;
+        }else {
+            string +=`,${orderBy.field} ${orderBy.suffix}`
+        }
+    })
 }
 
 
@@ -114,3 +126,7 @@ export interface IQueryObj {
     orderBy?: any;
 }
 
+export interface IOrderBy {
+    field: string;
+    suffix: "asc" | "desc"
+}
