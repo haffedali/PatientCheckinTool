@@ -41,15 +41,15 @@ export const buildClientWebApiOptions = (obj: IQueryObj) => {
  */
  const buildFilterWebApi = (filterArray: IFilterObject[]) => {
     let first = true
-    let string = `$filter=`
+    let string = `&$filter=`
     filterArray.forEach((filterItem)=>{
         if (!first){
             string += ' and '
         }
         if (filterItem.operation === "contains"){
             string += `contains(${filterItem.field}, '${filterItem.value}')`
-        } else if (filterItem.operation === "eq"){
-            string += `${filterItem.field} eq ${filterItem.value}`
+        } else if (filterItem.operation === "eq" || filterItem.operation === "ne" || filterItem.operation === "gt" || filterItem.operation === "ge" || filterItem.operation === "lt" || filterItem.operation === "le"){
+            string += `${filterItem.field} ${filterItem.operation} ${filterItem.value}`
         }
         first = false
     })
@@ -107,6 +107,7 @@ const buildOrderbyWebApi = (orderArray: IOrderBy[]) => {
             string +=`,${orderBy.field} ${orderBy.suffix}`
         }
     })
+    return string
 }
 
 
@@ -123,7 +124,7 @@ export interface IQueryObj {
     expandedEntity?: string;
     expandedSelect?: string[];
     top?: any;
-    orderBy?: any;
+    orderBy?: IOrderBy[];
 }
 
 export interface IOrderBy {
@@ -143,6 +144,13 @@ export interface IOrderBy {
 // STRING UTILS
 
 export const subDayFromISODateString = (dateString: string) => {
-    let date = parseInt(dateString.slice(8,10))
-    return date
+    let date = dateString.slice(8,10);
+    let yesterday: any = parseInt(date) - 1;
+    if (yesterday <= 9) {
+        yesterday = `0${yesterday.toString()}`;
+    } else {
+        yesterday = yesterday.toString()
+    }
+    let yesterdayDateString = dateString.slice(0,8) + yesterday
+    return yesterdayDateString
 }

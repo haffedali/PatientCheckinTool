@@ -1,21 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <manifest>
-  <control namespace="LabCore" constructor="PatientCheckInTool" version="0.0.1" display-name-key="PatientCheckInTool" description-key="PatientCheckInTool description" control-type="standard">
+  <control namespace="LabCore" constructor="PatientCheckInToolV3" version="0.0.1" display-name-key="PatientCheckInToolV3" description-key="PatientCheckInToolV3 description" control-type="standard">
     <!-- property node identifies a specific, configurable piece of data that the control expects from CDS -->
-    <property name="bound" display-name-key="Bound_Display_Key" description-key="Bound_Desc_Key" of-type="SingleLine.Text" usage="bound" required="true" />
-    <property name="apiUrl" display-name-key="ApiUrl_Display_Key" description-key="ApiUrl_Desc_Key" of-type="SingleLine.Text" usage="input" required="true" />
-    <property name="azureADAppId" display-name-key="AzureADAppId_Display_Key" description-key="AzureADAppId_Desc_Key" of-type="SingleLine.Text" usage="input" required="true" />
-    <property name="azureADAppAuthority" display-name-key="AzureADAppAuthority_Display_Key" description-key="AzureADAppAuthority_Desc_Key" of-type="SingleLine.Text" usage="input" required="true" />
-    <property name="azureADAppRedirectUrl" display-name-key="AzureADAppRedirectUrl_Display_Key" description-key="AzureADAppRedirectUrl_Desc_Key" of-type="SingleLine.Text" usage="input" required="true" />
-    <property name="azureADAppScopes" display-name-key="AzureADAppScopes_Display_Key" description-key="AzureADAppScopes_Desc_Key" of-type="SingleLine.Text" usage="input" required="true" />
-    <property name="cacheLocation" display-name-key="CacheLocation_Display_Key" description-key="CacheLocation_Desc_Key" of-type="Enum" usage="input" required="false" default-value="sessionStorage">
-      <value name="sessionStorage" display-name-key="CacheLocation_SessionStorage_Display_Key" description-key="">sessionStorage</value>
-      <value name="localStorage" display-name-key="CacheLocation_LocalStorage_Display_Key" description-key="">localStorage</value>
-    </property>
-    <property name="forceLogin" display-name-key="ForceLogin_Display_Key" description-key="ForceLogin_Desc_Key" of-type="Enum" usage="input" required="false" default-value="false">
-      <value name="true" display-name-key="ForceLogin_True_Display_Key" description-key="">true</value>
-      <value name="false" display-name-key="ForceLogin_False_Display_Key" description-key="">false</value>
-    </property>
+    <data-set name="DataSet" display-name-key="Dataset_Display_Key">
+
+    </data-set>
     <resources>
       <code path="index.ts" order="1"/>
       <css path="styles.css" order="1" />

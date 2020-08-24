@@ -16,9 +16,10 @@ export interface ICheckBoxProps {
 }
 
 export interface IAppointmentItemProps {
-    date: string,
+    scheduledStart: string,
+    scheduledEnd: string,
     name: string;
-    guid: string
+    subject: string
 }
 
 export interface IListProps {

@@ -9,16 +9,14 @@ import {IConfig} from "./interfaces";
 initializeIcons();
 
 
-export class PatientCheckInTool implements ComponentFramework.StandardControl<IInputs, IOutputs> {
+export class PatientCheckInToolV3 implements ComponentFramework.StandardControl<IInputs, IOutputs> {
 	private _container: HTMLDivElement;
-	private _context: ComponentFramework.Context<IInputs>;
 	private _props: IAppProps;
 	private notifyOutputChanged: () => void;
 
 
 	public init(context: ComponentFramework.Context<IInputs>, notifyOutputChanged: () => void, state: ComponentFramework.Dictionary, container: HTMLDivElement) {
 		this._container = container;
-		this._context = context;
 		this._props = {
 			componentContext: context,
 		};

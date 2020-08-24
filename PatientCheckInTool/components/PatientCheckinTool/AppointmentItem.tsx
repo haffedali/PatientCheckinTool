@@ -5,22 +5,18 @@ import { CheckBox } from "../CheckBox";
 import { AppContext } from "../../AppContext";
 import { IAppointmentItemProps } from "../../interfaces";
 
-
-
-
-
-
-// start time: "ScheduledStart"
-// end time: "ScheduledEnd"
-export const AppointmentItem: React.FC<IAppointmentItemProps> = ({ name, date, guid }) => {
+export const AppointmentItem: React.FC<IAppointmentItemProps> = ({
+  name,
+  scheduledStart,
+  subject,
+}) => {
   const [checked, setChecked] = React.useState(false);
   const handleMessageButtonClick = () => {
     console.log(`message ${name}`);
   };
-  
 
   const handleCheckBoxClick = () => {
-    console.log(`person with id ${guid}`);
+    console.log(`person with id ${subject}`);
     if (!checked) {
       setChecked(true);
     } else {
@@ -28,39 +24,55 @@ export const AppointmentItem: React.FC<IAppointmentItemProps> = ({ name, date, g
     }
   };
 
-  const renderAppointmentTime = (date: string) => {
-    let dateObj = new Date(date);
-    let currentTime = new Date();
+  const renderAppointmentTime = (scheduledStart: string | undefined) => {
+    if (scheduledStart) {
+      let dateObj = new Date(scheduledStart);
+      let currentTime = new Date();
 
-    if (dateObj.getTime() > currentTime.getTime() && checked) {
-      console.log("green")
-      return (
-        <Text key={`date of ${guid}`} variant={"mediumPlus"} style={{ backgroundColor: "#80ff80" }}>
-          {date}
-        </Text>
-      );
-    } else if (dateObj.getTime() < currentTime.getTime() && !checked) {
-      console.log("red")
-      return (
-        <Text key={`date of ${guid}`} variant={"mediumPlus"} style={{ backgroundColor: "#ff6666" }}>
-          {date}
-        </Text>
-      );
+      if (dateObj.getTime() > currentTime.getTime() && checked) {
+        console.log("green");
+        return (
+          <Text
+            key={`scheduledStart of ${subject}`}
+            variant={"mediumPlus"}
+            style={{ backgroundColor: "#80ff80" }}
+          >
+            {scheduledStart}
+          </Text>
+        );
+      } else if (dateObj.getTime() < currentTime.getTime() && !checked) {
+        console.log("red");
+        return (
+          <Text
+            key={`scheduledStart of ${subject}`}
+            variant={"mediumPlus"}
+            style={{ backgroundColor: "#ff6666" }}
+          >
+            {scheduledStart}
+          </Text>
+        );
+      } else {
+        console.log("white");
+
+        return (
+          <Text key={`scheduledStart of ${subject}`} variant={"mediumPlus"}>
+            {scheduledStart}
+          </Text>
+        );
+      }
     } else {
-      console.log("white")
-
-      return (
-        <Text key={`date of ${guid}`} variant={"mediumPlus"}>
-          {date}
-        </Text>
-      );
+      return <div>neko neko neeeiii</div>;
     }
   };
   return (
     <div className={"appointment_item"}>
-      <div>{renderAppointmentTime(date)}</div>
+      <div>{renderAppointmentTime(scheduledStart)}</div>
       <div className={"patient_name"}>
-        <Text key={`name of ${guid}`} variant={"mediumPlus"}>
+        <Text key={`name of ${subject}`} variant={"mediumPlus"}>
+          {name}
+        </Text>
+        <div></div>
+        <Text key={`subject of ${name}`} variant={"mediumPlus"}>
           {name}
         </Text>
       </div>

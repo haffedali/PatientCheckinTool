@@ -38,9 +38,11 @@ export const ListContainer: React.FC<IListProps> = ({ items }) => {
       if (item !== undefined) {
         return (
           <AppointmentItem
-            date={item.date}
-            name={item.name}
-            guid={item.guid}
+            // scheduledstart={item.scheduledstart}
+            // scheduledend={item.scheduledend}
+            // name={item.name}
+            // subject={item.subject}
+            {...item}
           />
         );
       }
@@ -65,7 +67,7 @@ export const ListContainer: React.FC<IListProps> = ({ items }) => {
             renderedWindowsAhead={4}
             onRenderCell={onRenderCell}
           />
-          : <Spinner label="Seriously, still loading..." ariaLive="assertive" labelPosition="top" />
+          : <Spinner label="loading your records..." ariaLive="assertive" labelPosition="top" />
 
       }
     </div>
