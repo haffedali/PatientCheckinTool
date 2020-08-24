@@ -130,3 +130,19 @@ export interface IOrderBy {
     field: string;
     suffix: "asc" | "desc"
 }
+
+
+
+
+
+
+
+
+
+
+// STRING UTILS
+
+export const subDayFromISODateString = (dateString: string) => {
+    let date = parseInt(dateString.slice(8,10))
+    return date
+}

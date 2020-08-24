@@ -5,11 +5,19 @@ import { CheckBox } from "../CheckBox";
 import { AppContext } from "../../AppContext";
 import { IAppointmentItemProps } from "../../interfaces";
 
+
+
+
+
+
+// start time: "ScheduledStart"
+// end time: "ScheduledEnd"
 export const AppointmentItem: React.FC<IAppointmentItemProps> = ({ name, date, guid }) => {
   const [checked, setChecked] = React.useState(false);
   const handleMessageButtonClick = () => {
     console.log(`message ${name}`);
   };
+  
 
   const handleCheckBoxClick = () => {
     console.log(`person with id ${guid}`);

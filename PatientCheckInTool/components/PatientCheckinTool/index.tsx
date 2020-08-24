@@ -23,6 +23,9 @@ export const PatientCheckinTool: React.FC = () => {
                     // }
                     // const options = buildClientWebApiOptions(testPayload)
                     // props.componentContext.webAPI.retrieveMultipleRecords("contacts", options)
+                    console.log(appContext.date.toUTCString());
+                    console.log(appContext.date.toISOString().slice(0,10));
+
                     if (appContext.date.toLocaleDateString() === currentDate){
                         fetch("http://patientcheckintest.azurewebsites.net/api/patientone")
                             .then((res) => res.json())
