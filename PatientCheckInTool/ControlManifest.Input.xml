@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <manifest>
-  <control namespace="LabCore" constructor="PatientCheckInToolV3" version="0.0.1" display-name-key="PatientCheckInToolV3" description-key="PatientCheckInToolV3 description" control-type="standard">
+  <control namespace="LabCore" constructor="PatientCheckInToolV4" version="0.0.1" display-name-key="PatientCheckInToolV4" description-key="PatientCheckInToolV4 description" control-type="standard">
     <!-- property node identifies a specific, configurable piece of data that the control expects from CDS -->
     <data-set name="DataSet" display-name-key="Dataset_Display_Key">
 

@@ -25,7 +25,7 @@ export const PatientCheckinTool: React.FC = () => {
           ],
         };
         const options = buildClientWebApiOptions(testPayload)
-        appContext.componentContext.webAPI.retrieveMultipleRecords("appointments", options)
+        appContext.componentContext.webAPI.retrieveMultipleRecords("appointment", options)
             .then(
                 (res)=>{
                     console.log(`plain response ${res}`)
